@@ -1,5 +1,7 @@
 import type {Dispatch, FormEvent, SetStateAction} from 'react';
 
+import {HTTP_METHODS} from '@nfq/typed-next-api';
+
 import {useAddTask} from 'Client/application/useCases/useAddTask';
 
 import type {ITask} from 'Client/domain/entities/Tasks';
@@ -18,19 +20,22 @@ export const useTaskForm = (setTasks: Dispatch<SetStateAction<ITask[]>>) => {
      *
      * @param event The Click event.
      */
-    const handleAddTask = (event: FormEvent<HTMLFormElement>) => {
+    const handleAddTask = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
 
-        const newTask: ITask = {
+        const newTask = {
             id: Date.now().toString(),
             taskBody: '',
             taskTitle: data.get('taskname') as string
         };
 
-        addTask(newTask);
+        await addTask({
+            body: newTask,
+            method: HTTP_METHODS.POST
+        });
         setTasks((prev: ITask[]) => [newTask, ...prev]);
-        event.currentTarget.reset();
+        // event.currentTarget.reset();
     };
 
     return {handleAddTask};

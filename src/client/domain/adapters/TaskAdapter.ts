@@ -1,4 +1,7 @@
+
+import type {CreateTaskFormData} from '../entities/Task';
 import type {ITask} from '../entities/Tasks';
+import type {HTTP_METHODS, MutationRepoArgs} from '@nfq/typed-next-api';
 
 /**
  * Interface for a Task adapter.
@@ -11,19 +14,19 @@ export interface TaskAdapter {
      *
      * @returns Void.
      */
-    addTask(newTask: ITask): void;
+    addTask(key: string, args: MutationRepoArgs<CreateTaskFormData, HTTP_METHODS.POST>): Promise<ITask | undefined>;
 
     /**
      * Deletes a specific task.
      *
      * @returns Void.
      */
-    deleteTask(id: string): void;
+    deleteTaskById(id: string): void;
 
     /**
      * Retrieves the stored tasks.
      *
      * @returns An Array of the stored tasks.
      */
-    getTasks(): ITask[];
+    getTasks(): Promise<ITask[] | undefined>;
 }

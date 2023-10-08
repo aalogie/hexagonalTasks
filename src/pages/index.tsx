@@ -21,7 +21,16 @@ const HomePage: NextPageWithLayout = () => {
     const {getTasks} = useGetTasks();
 
     useEffect(() => {
-        setTasks(getTasks());
+        /**
+         * This function retrieves the tasks from db.
+         */
+        const retrieveTasks = async () => {
+            const storedTasks = await getTasks() as ITask[];
+
+            setTasks(storedTasks);
+        };
+
+        void retrieveTasks();
     }, [getTasks]);
 
     return (
@@ -29,7 +38,7 @@ const HomePage: NextPageWithLayout = () => {
             <Head><title>O2 Campaign Check | Dashboard</title></Head>
             <Spacer y={6} />
             <TaskForm setTasks={setTasks} />
-            <TaskList tasks={tasks} setTasks={setTasks} />
+            <TaskList setTasks={setTasks} tasks={tasks} />
         </Container>
     );
 };

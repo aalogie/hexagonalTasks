@@ -1,3 +1,5 @@
+import {useMutateRepository} from '@nfq/typed-next-api';
+
 import TaskService from '../services/TaskService';
 
 /**
@@ -5,4 +7,12 @@ import TaskService from '../services/TaskService';
  *
  * @returns Void.
  */
-export const useAddTask = () => ({addTask: TaskService.addTask});
+export const useAddTask = () => {
+    const {trigger} = useMutateRepository<typeof TaskService.addTask>(
+        'TaskList',
+        TaskService.addTask,
+        {revalidate: true}
+    );
+
+    return {addTask: trigger};
+};

@@ -1,5 +1,13 @@
+import {api} from '@nfq/typed-next-api';
+
+
+import type {HTTP_METHODS, MutationRepoArgs} from '@nfq/typed-next-api';
 import type {TaskAdapter} from 'Client/domain/adapters/TaskAdapter';
-import {ITask} from 'Client/domain/entities/Tasks';
+import type {CreateTaskFormData} from 'Client/domain/entities/Task';
+import type {getTaskList} from 'src/pages/api/tasks';
+import type {deleteTaskById} from 'src/pages/api/tasks/[id]';
+import type {createTask} from 'src/pages/api/tasks/create';
+
 
 /**
  * TaskService class.
@@ -21,18 +29,14 @@ class TaskService implements TaskAdapter {
      * const storedTasks = taskService.getTasks();
      * ```
      */
-    getTasks() {
-        const JsonStoredTasks = localStorage.getItem('tasks');
+    async getTasks() {
+        const data = await api<typeof getTaskList>('/api/tasks');
 
-        let storedTasks: ITask[];
-
-        if (JsonStoredTasks) {
-            storedTasks = JSON.parse(JsonStoredTasks) as ITask[];
-        } else {
-            storedTasks = [];
-        }
-
-        return storedTasks;
+        return data?.map(task => ({
+            id: task.id,
+            taskBody: task.body,
+            taskTitle: task.title
+        }));
     }
 
     /**
@@ -44,17 +48,21 @@ class TaskService implements TaskAdapter {
      * const storedTasks = taskService.addTask();
      * ```
      */
-    addTask(newTask: ITask) {
-        const JsonStoredTasks = localStorage.getItem('tasks');
-        let storedTasks: ITask[];
+    async addTask(key: string, {arg: {body, method}}: MutationRepoArgs<CreateTaskFormData, HTTP_METHODS.POST>) {
+        const data = await api<typeof createTask>('/api/tasks/create', {
+            body,
+            method
+        });
 
-        if (JsonStoredTasks) {
-            storedTasks = JSON.parse(JsonStoredTasks) as ITask[];
-        } else {
-            storedTasks = [];
+        if (data) {
+            return {
+                id: data.id,
+                taskBody: data.body,
+                taskTitle: data.title
+            };
         }
 
-        localStorage.setItem('tasks', JSON.stringify([newTask, ...storedTasks]));
+        return undefined;
     }
 
     /**
@@ -66,21 +74,10 @@ class TaskService implements TaskAdapter {
      * const storedTasks = taskService.deleteTask();
      * ```
      */
-    deleteTask(id: string) {
-        console.log(',,', id);
+    async deleteTaskById(key: string, {arg: {body, method}}: MutationRepoArgs<{id: string}, HTTP_METHODS.DELETE>) {
+        const data = await api<typeof deleteTaskById>(`/api/tasks/${body.id}`, {method});
 
-        const JsonStoredTasks = localStorage.getItem('tasks');
-        let storedTasks: ITask[];
-
-        if (JsonStoredTasks) {
-            storedTasks = JSON.parse(JsonStoredTasks) as ITask[];
-        } else {
-            storedTasks = [];
-        }
-
-        const updatedTasks = storedTasks.filter((task: ITask) => task.id !== id);
-
-        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+        return data;
     }
 }
 

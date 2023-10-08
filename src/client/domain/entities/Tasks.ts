@@ -9,7 +9,7 @@ export interface ITask {
     /**
      * The content of the task.
      */
-    taskBody: string;
+    taskBody: string | null;
     /**
      * The name of the task.
      */

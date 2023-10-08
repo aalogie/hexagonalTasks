@@ -27,9 +27,11 @@ const TaskItem = ({setTasks, task}: TaskItemProps) => {
     /**
      * This handler deletes the task from local storage using the TaskService and rerenders the tasklist.
      */
-    const handleDeleteTask = () => {
+    const handleDeleteTask = async () => {
         deleteTask(task.id);
-        setTasks(getTasks);
+        const tasks = await getTasks() as ITask[];
+
+        setTasks(tasks);
     };
 
     return (
