@@ -1,28 +1,24 @@
-'use client';
-
-import type {Dispatch, SetStateAction} from 'react';
-
 import {Col, Row, Spacer} from '@nfq/react-grid';
 import styled from 'styled-components';
 
 import {useTaskForm} from './useTaskForm';
 
-import type {ITask} from 'Client/domain/entities/Tasks';
-
-
-interface ComponentProps {
-    setTasks: Dispatch<SetStateAction<ITask[]>>;
-}
 
 /**
- * TaskForm.
+ * Functional component representing a task form module.
  *
- * @param props          The component props.
- * @param props.setTasks The setter function of the tasks array.
- * @returns The TaskForm component.
+ * This component is used to render a form module. It provides functionalities
+ * for adding a new task. It uses the `useTaskForm` hook internally.
+ *
+ * @returns A React component representing a task form module.
+ *
+ * @example
+ * ```tsx
+ *   <TaskForm />
+ * ```
  */
-const TaskForm = ({setTasks}: ComponentProps) => {
-    const {handleAddTask} = useTaskForm(setTasks);
+const TaskForm = () => {
+    const {handleAddTask} = useTaskForm();
 
     return (
         <FormElement onSubmit={handleAddTask}>

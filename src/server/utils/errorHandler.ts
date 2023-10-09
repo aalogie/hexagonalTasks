@@ -11,8 +11,6 @@ import type {NextApiRequest, NextApiResponse} from 'next';
  * @param res Response.
  */
 export const errorHandler = (err: unknown, req: NextApiRequest, res: NextApiResponse): void => {
-    console.log(err);
-
     const {message = 'Unknown error'} = err as Error;
 
     res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({

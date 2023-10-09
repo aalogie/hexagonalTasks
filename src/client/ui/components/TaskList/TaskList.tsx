@@ -1,6 +1,5 @@
 'use client';
 
-import type {Dispatch, SetStateAction} from 'react';
 
 import styled from 'styled-components';
 
@@ -9,23 +8,33 @@ import {TaskItem} from '../TaskItem/TaskItem';
 import type {ITask} from 'Client/domain/entities/Tasks';
 
 interface TaskListProps {
-    setTasks: Dispatch<SetStateAction<ITask[]>>;
     tasks: ITask[];
 }
 
 /**
- * TaskList.
+ * Functional component representing a task list module.
  *
- * @param props          The component props.
- * @param props.tasks    The tasks in the props.
- * @param props.setTasks The setter function of the tasks array.
- * @returns The TaskList component.
+ * This component is used to render a list module. It provides functionalities
+ * for fetching, listing and deleting a task.
+ *
+ * @param props       The component props.
+ * @param props.tasks The tasks in the props.
+ *
+ * @returns A React component representing a task list module.
+ *
+ * @example
+ * ```tsx
+ *   <TaskList />
+ * ```
  */
-const TaskList = ({setTasks, tasks}: TaskListProps) => (
+const TaskList = ({tasks}: TaskListProps) => (
     <List>
-        {tasks.map((task: ITask) => <TaskItem key={task.id} setTasks={setTasks} task={task} />)}
+        {tasks.map((task: ITask) => <TaskItem key={task.id} task={task} />)}
     </List>
 );
+
+TaskList.displayName = 'TaskList';
+TaskList.defaultProps = {tasks: []};
 
 export default TaskList;
 

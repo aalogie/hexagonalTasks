@@ -21,7 +21,10 @@ export interface TaskAdapter {
      *
      * @returns Void.
      */
-    deleteTaskById(id: string): void;
+    deleteTaskById(
+        key: string,
+        args: MutationRepoArgs<{id: string}, HTTP_METHODS.DELETE>
+    ): Promise<string | undefined>;
 
     /**
      * Retrieves the stored tasks.

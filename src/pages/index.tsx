@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react';
 
 import {Container, Spacer} from '@nfq/react-grid';
 import Head from 'next/head';
@@ -8,7 +7,6 @@ import TaskList from 'Client/ui/components/TaskList/TaskList';
 
 import {useGetTasks} from 'Client/application/useCases/useGetTasks';
 
-import type {ITask} from 'Client/domain/entities/Tasks';
 import type {NextPageWithLayout} from 'types/global';
 
 /**
@@ -17,28 +15,14 @@ import type {NextPageWithLayout} from 'types/global';
  * @returns The component.
  */
 const HomePage: NextPageWithLayout = () => {
-    const [tasks, setTasks] = useState<ITask[]>([]);
-    const {getTasks} = useGetTasks();
-
-    useEffect(() => {
-        /**
-         * This function retrieves the tasks from db.
-         */
-        const retrieveTasks = async () => {
-            const storedTasks = await getTasks() as ITask[];
-
-            setTasks(storedTasks);
-        };
-
-        void retrieveTasks();
-    }, [getTasks]);
+    const {data} = useGetTasks();
 
     return (
         <Container as="main">
             <Head><title>O2 Campaign Check | Dashboard</title></Head>
             <Spacer y={6} />
-            <TaskForm setTasks={setTasks} />
-            <TaskList setTasks={setTasks} tasks={tasks} />
+            <TaskForm />
+            <TaskList tasks={data} />
         </Container>
     );
 };

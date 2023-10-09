@@ -1,6 +1,5 @@
 import {api} from '@nfq/typed-next-api';
 
-
 import type {HTTP_METHODS, MutationRepoArgs} from '@nfq/typed-next-api';
 import type {TaskAdapter} from 'Client/domain/adapters/TaskAdapter';
 import type {CreateTaskFormData} from 'Client/domain/entities/Task';
@@ -8,12 +7,10 @@ import type {getTaskList} from 'src/pages/api/tasks';
 import type {deleteTaskById} from 'src/pages/api/tasks/[id]';
 import type {createTask} from 'src/pages/api/tasks/create';
 
-
 /**
  * TaskService class.
  *
- * This class implements the TaskAdapter interface and provides a method for retrieving the stored Tasks and another to add a new Task.
- * The 'getTasks' method returns an array containing the stored Tasks from localStorage.
+ * This class implements the TaskAdapter interface and provides methods for retrieving, adding and deleting tasks.
  *
  * @implements {TaskAdapter}
  */
@@ -21,11 +18,10 @@ class TaskService implements TaskAdapter {
     /**
      * Retrieves the stored tasks.
      *
-     * @returns An array containing the stored tasks.
+     * @returns A promise that resolves to an array containing the stored tasks.
      *
      * @example
      * ```ts
-     * const taskService = new TaskService();
      * const storedTasks = taskService.getTasks();
      * ```
      */
@@ -42,9 +38,12 @@ class TaskService implements TaskAdapter {
     /**
      * Adds a new Task to the stored tasks.
      *
+     * @param key The key used by the SWR cache.
+     * @param arg An object containing the form data and the HTTP method.
+     * @returns A promise that resolves to the new task data, or undefined if the API request fails.
+     *
      * @example
      * ```ts
-     * const taskService = new TaskService();
      * const storedTasks = taskService.addTask();
      * ```
      */
@@ -70,8 +69,7 @@ class TaskService implements TaskAdapter {
      *
      * @example
      * ```ts
-     * const taskService = new TaskService();
-     * const storedTasks = taskService.deleteTask();
+     * const deletedTask = taskService.deleteTaskById();
      * ```
      */
     async deleteTaskById(key: string, {arg: {body, method}}: MutationRepoArgs<{id: string}, HTTP_METHODS.DELETE>) {

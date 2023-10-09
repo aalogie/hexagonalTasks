@@ -1,22 +1,20 @@
-import type {Dispatch, FormEvent, SetStateAction} from 'react';
+import type {FormEvent} from 'react';
 
 import {HTTP_METHODS} from '@nfq/typed-next-api';
 
 import {useAddTask} from 'Client/application/useCases/useAddTask';
 
-import type {ITask} from 'Client/domain/entities/Tasks';
 
 /**
  * Handles the Task Form data.
  *
- * @param setTasks The state setter function.
  * @returns The save handler function.
  */
-export const useTaskForm = (setTasks: Dispatch<SetStateAction<ITask[]>>) => {
+export const useTaskForm = () => {
     const {addTask} = useAddTask();
 
     /**
-     * This function handles the addition of an task.
+     * This function handles the addition of a new task.
      *
      * @param event The Click event.
      */
@@ -34,8 +32,8 @@ export const useTaskForm = (setTasks: Dispatch<SetStateAction<ITask[]>>) => {
             body: newTask,
             method: HTTP_METHODS.POST
         });
-        setTasks((prev: ITask[]) => [newTask, ...prev]);
-        // event.currentTarget.reset();
+
+        event.target[0].value = '';
     };
 
     return {handleAddTask};

@@ -1,15 +1,13 @@
-import type {Dispatch, SetStateAction} from 'react';
 
 import styled from 'styled-components';
 
 import {useDeleteTask} from 'Client/application/useCases/useDeleteTask';
-import {useGetTasks} from 'Client/application/useCases/useGetTasks';
 
+import {HTTP_METHODS} from '@nfq/typed-next-api';
 import type {ITask} from 'Client/domain/entities/Tasks';
 
 
 interface TaskItemProps {
-    setTasks: Dispatch<SetStateAction<ITask[]>>;
     task: ITask;
 }
 /**
@@ -20,18 +18,17 @@ interface TaskItemProps {
  * @param props.setTasks The setter for the tasklist.
  * @returns The TaskList component.
  */
-const TaskItem = ({setTasks, task}: TaskItemProps) => {
-    const {getTasks} = useGetTasks();
+const TaskItem = ({task}: TaskItemProps) => {
     const {deleteTask} = useDeleteTask();
 
     /**
      * This handler deletes the task from local storage using the TaskService and rerenders the tasklist.
      */
     const handleDeleteTask = async () => {
-        deleteTask(task.id);
-        const tasks = await getTasks() as ITask[];
-
-        setTasks(tasks);
+        await deleteTask({
+            body: {id: task.id},
+            method: HTTP_METHODS.DELETE
+        });
     };
 
     return (

@@ -1,3 +1,5 @@
+import {useRepository} from '@nfq/typed-next-api';
+
 import TaskService from '../services/TaskService';
 
 /**
@@ -5,4 +7,15 @@ import TaskService from '../services/TaskService';
  *
  * @returns An array of the stored tasks.
  */
-export const useGetTasks = () => ({getTasks: TaskService.getTasks});
+export const useGetTasks = () => {
+    const {data, error, isValidating} = useRepository<typeof TaskService.getTasks>(
+        'TaskList',
+        TaskService.getTasks
+    );
+
+    return {
+        data,
+        error,
+        isValidating
+    };
+};
