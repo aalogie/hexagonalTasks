@@ -1,16 +1,16 @@
-import {Col, Row, Spacer} from '@nfq/react-grid';
+import {Col, lighten, Row, Spacer} from '@nfq/react-grid';
 import styled from 'styled-components';
 
 import {useTaskForm} from './useTaskForm';
 
-
 /**
- * Functional component representing a task form module.
+ * The `TaskForm` component is a React component responsible for rendering a form used to add new tasks.
+ * It provides a user interface for entering the title of a new task and submitting it.
+ * This component is typically used within a task management application to facilitate task creation.
  *
- * This component is used to render a form module. It provides functionalities
- * for adding a new task. It uses the `useTaskForm` hook internally.
- *
- * @returns A React component representing a task form module.
+ * @returns The `TaskForm` component returns a JSX element representing the task creation form.
+ * The form includes an input field for entering the task title and a submit button to add the task.
+ * When the form is submitted, it triggers the `handleAddTask` function to add the new task.
  *
  * @example
  * ```tsx
@@ -62,6 +62,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.input`
+    background-color: ${({theme}) => lighten(theme.colors.brandMain, 30)};
     border: none;
     cursor: pointer;
     font-size: large;

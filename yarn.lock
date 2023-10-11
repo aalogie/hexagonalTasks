@@ -1413,10 +1413,10 @@
   resolved "https://registry.yarnpkg.com/@nfq/next-fonts/-/next-fonts-1.4.0.tgz#fd4cc4861b80e9b64bc630a624ec0f1dad1c9567"
   integrity sha512-XNjHOLtq8LnVW2qwPhM+jrmdAL8c8eQTQ97qyQJUy20eeST8VfudXo5JXuZcf6cAOQVMZhZvrcVqDGukpMrMwA==
 
-"@nfq/react-grid@^3.1.2":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@nfq/react-grid/-/react-grid-3.2.0.tgz#bf8e9e9e0ab0b2343011f9c347a2b8b4d64175eb"
-  integrity sha512-VuK8g2KkzeQIXcJza5bn19++CHlUPV4dPHjB6Fie+G5nCEUd9rd8O2YZd4erM3gsuWp7dTi0wswUyBq0nedPdA==
+"@nfq/react-grid@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@nfq/react-grid/-/react-grid-4.1.0.tgz#d714b942200842a566cbba5602328bff6580895a"
+  integrity sha512-bfnQ9NmGajbdzZL+Hun4BcLYr43s2+C+up+EzhMw1EVBAbdrtfSta6j4H+N1Ej/HcKMKLNJ0oIc1EEcMhH4HSw==
   dependencies:
     which "^3.0.1"
 

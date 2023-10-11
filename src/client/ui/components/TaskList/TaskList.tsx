@@ -1,6 +1,5 @@
 'use client';
 
-
 import styled from 'styled-components';
 
 import {TaskItem} from '../TaskItem/TaskItem';
@@ -12,19 +11,19 @@ interface TaskListProps {
 }
 
 /**
- * Functional component representing a task list module.
- *
- * This component is used to render a list module. It provides functionalities
- * for fetching, listing and deleting a task.
+ * The `TaskList` component is a React component designed to render a list of tasks.
+ * It receives an array of task objects as a prop and maps over the tasks to render individual `TaskItem` components.
  *
  * @param props       The component props.
- * @param props.tasks The tasks in the props.
+ * @param props.tasks TAn array of task objects to be displayed in the list.
  *
- * @returns A React component representing a task list module.
+ * @returns The `TaskList` component returns a JSX element representing a list of tasks.
+ * It maps over the provided `tasks` array, creating a `TaskItem` component for each task in the list.
+ * The resulting list of `TaskItem` components is wrapped in a `List` element for rendering.
  *
  * @example
  * ```tsx
- *   <TaskList />
+ *   <TaskList tasks={taskArray} />
  * ```
  */
 const TaskList = ({tasks}: TaskListProps) => (
