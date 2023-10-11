@@ -1384,10 +1384,10 @@
   resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-13.5.4.tgz#cc542907b55247c5634d9a8298e1c143a1847e25"
   integrity sha512-cyRvlAxwlddlqeB9xtPSfNSCRy8BOa4wtMo0IuI9P7Y0XT2qpDrpFKRyZ7kUngZis59mPVla5k8X1oOJ8RxDYg==
 
-"@nfq/eslint-config@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@nfq/eslint-config/-/eslint-config-3.1.0.tgz#0a19318ec79bfbe9489effd0358dfce7d0dcbe48"
-  integrity sha512-HLYoLy1dGPrZ2f1pgYdj3OYTmQ6Ug74US/uBulL2ngPdTIAJASK6P3GXcgirNH2gK7fBSy+uh0htEO42OT7KUA==
+"@nfq/eslint-config@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@nfq/eslint-config/-/eslint-config-3.1.1.tgz#d1bf6e8c5611ca432ef37a61765f96b294b155e9"
+  integrity sha512-enKXrNcuEbHZShl0NtDStrToeLkgQxfw2iTZN6TzPj0q5mPBWLrrXcGef9jkDzqUro5ULeYrwu+5/JriDhskDQ==
   dependencies:
     confusing-browser-globals "^1.0.11"
 
@@ -1413,10 +1413,10 @@
   resolved "https://registry.yarnpkg.com/@nfq/next-fonts/-/next-fonts-1.4.0.tgz#fd4cc4861b80e9b64bc630a624ec0f1dad1c9567"
   integrity sha512-XNjHOLtq8LnVW2qwPhM+jrmdAL8c8eQTQ97qyQJUy20eeST8VfudXo5JXuZcf6cAOQVMZhZvrcVqDGukpMrMwA==
 
-"@nfq/react-grid@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@nfq/react-grid/-/react-grid-4.1.0.tgz#d714b942200842a566cbba5602328bff6580895a"
-  integrity sha512-bfnQ9NmGajbdzZL+Hun4BcLYr43s2+C+up+EzhMw1EVBAbdrtfSta6j4H+N1Ej/HcKMKLNJ0oIc1EEcMhH4HSw==
+"@nfq/react-grid@^4.3.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@nfq/react-grid/-/react-grid-4.3.2.tgz#a5afcfa9bf99eba903f2f915fd78c9e8f7386e7d"
+  integrity sha512-lKU7pgsuIzfLI0mEHJqzSziFelTfOkDdR0rIfkK59F+khGP5oBmUdQIJm7QakMO20iJ4iimPYnFLMxOLUISrvQ==
   dependencies:
     which "^3.0.1"
 

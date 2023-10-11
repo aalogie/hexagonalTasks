@@ -1,5 +1,8 @@
 
+import {m as motion} from 'framer-motion';
 import styled from 'styled-components';
+
+import {dropAnimation} from 'Client/ui/animations/taskList';
 
 import {useTaskItem} from './useTaskItem';
 
@@ -17,6 +20,7 @@ interface ComponentProps {
      */
     testId: string;
 }
+
 
 /**
  * The `TaskItem` function is a React component designed to render and manage a single task item.
@@ -39,7 +43,14 @@ const TaskItem = ({task, testId}: ComponentProps) => {
     const {handleDeleteTask} = useTaskItem(task.id);
 
     return (
-        <ListItem data-cy={testId}>
+        <ListItem
+            animate="visible"
+            data-cy={testId}
+            exit="exit"
+            initial="hidden"
+            transition={{duration: 0.1}}
+            variants={dropAnimation}
+        >
             <ItemText>{task.taskTitle}</ItemText><DeleteButton onClick={handleDeleteTask}>x</DeleteButton>
         </ListItem>
     );
@@ -50,7 +61,7 @@ TaskItem.defaultProps = {testId: 'TaskItem'};
 
 export {TaskItem};
 
-const ListItem = styled.li`
+const ListItem = styled(motion.li)`
 color: ${({theme}) => theme.colors.pageBackground};
     display: flex;
     justify-content: space-between;

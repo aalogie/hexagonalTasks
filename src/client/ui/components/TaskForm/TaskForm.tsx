@@ -1,4 +1,5 @@
 import {Col, lighten, Row, Spacer} from '@nfq/react-grid';
+import {m as motion} from 'framer-motion';
 import styled from 'styled-components';
 
 import {useTaskForm} from './useTaskForm';
@@ -33,7 +34,12 @@ const TaskForm = () => {
                     />
                 </Col>
                 <Col xs="max-content">
-                    <Button type="submit" value="Add" />
+                    <Button
+                        type="submit"
+                        value="Add"
+                        whileHover={{scale: 1.1}}
+                        whileTap={{scale: 1}}
+                    />
                 </Col>
             </Row>
         </FormElement>
@@ -61,7 +67,7 @@ const Input = styled.input`
     width: 100%;
 `;
 
-const Button = styled.input`
+const Button = styled(motion.input)`
     background-color: ${({theme}) => lighten(theme.colors.brandMain, 30)};
     border: none;
     cursor: pointer;

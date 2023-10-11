@@ -2,7 +2,7 @@ import type {FormEvent} from 'react';
 
 import {HTTP_METHODS} from '@nfq/typed-next-api';
 
-import {useAddTask} from 'Client/application/useCases/useAddTask';
+import {useAddTask} from 'Application/useCases/useAddTask';
 
 
 /**
@@ -24,6 +24,8 @@ export const useTaskForm = () => {
     const handleAddTask = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+
+        if (!data.get('taskname')) return;
 
         const newTask = {
             id: Date.now().toString(),

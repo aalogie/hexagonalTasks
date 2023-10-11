@@ -1,8 +1,9 @@
 'use client';
 
+import {AnimatePresence} from 'framer-motion';
 import styled from 'styled-components';
 
-import {TaskItem} from '../TaskItem/TaskItem';
+import {TaskItem} from 'UI/components/TaskItem';
 
 import type {ITask} from 'Client/domain/entities/Tasks';
 
@@ -28,7 +29,9 @@ interface TaskListProps {
  */
 const TaskList = ({tasks}: TaskListProps) => (
     <List>
-        {tasks.map((task: ITask) => <TaskItem key={task.id} task={task} />)}
+        <AnimatePresence initial={false} mode="popLayout">
+            {tasks.map((task: ITask) => <TaskItem key={task.id} task={task} />)}
+        </AnimatePresence>
     </List>
 );
 

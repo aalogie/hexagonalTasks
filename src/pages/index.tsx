@@ -2,10 +2,10 @@
 import {Container, Spacer} from '@nfq/react-grid';
 import Head from 'next/head';
 
-import {TaskForm} from 'Client/ui/components/TaskForm';
-import TaskList from 'Client/ui/components/TaskList/TaskList';
+import {TaskForm} from 'UI/components/TaskForm';
+import TaskList from 'UI/components/TaskList';
 
-import {useGetTasks} from 'Client/application/useCases/useGetTasks';
+import {useGetTasks} from 'Application/useCases/useGetTasks';
 
 import type {NextPageWithLayout} from 'types/global';
 
