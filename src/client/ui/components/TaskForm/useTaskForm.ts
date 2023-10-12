@@ -4,7 +4,6 @@ import {HTTP_METHODS} from '@nfq/typed-next-api';
 
 import {useAddTask} from 'Application/useCases/useAddTask';
 
-
 /**
  * The `useTaskForm` custom hook is designed to provide functionality for managing a task form for adding new tasks.
  * It initializes and exposes a `handleAddTask` function, which handles the submission of a new task.

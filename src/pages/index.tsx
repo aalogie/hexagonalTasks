@@ -2,8 +2,9 @@
 import {Container, Spacer} from '@nfq/react-grid';
 import Head from 'next/head';
 
+import {useTaskForm} from 'Client/ui/components/TaskForm/useTaskForm';
 import {TaskForm} from 'UI/components/TaskForm';
-import TaskList from 'UI/components/TaskList';
+import {TaskList} from 'UI/components/TaskList';
 
 import {useGetTasks} from 'Application/useCases/useGetTasks';
 
@@ -16,12 +17,13 @@ import type {NextPageWithLayout} from 'types/global';
  */
 const HomePage: NextPageWithLayout = () => {
     const {data} = useGetTasks();
+    const {handleAddTask} = useTaskForm();
 
     return (
         <Container as="main">
             <Head><title>O2 Campaign Check | Dashboard</title></Head>
             <Spacer y={6} />
-            <TaskForm />
+            <TaskForm onSubmit={handleAddTask} />
             <TaskList tasks={data} />
         </Container>
     );
