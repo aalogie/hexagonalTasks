@@ -3,10 +3,12 @@ import type {FormEvent} from 'react';
 import {Col, Row, Spacer} from '@nfq/react-grid';
 import styled from 'styled-components';
 
-import {Button} from '../Button';
 import {TextInput} from '../TextInput';
 
+import {useFormSubmit} from './useFormSubmit';
+
 import type {WithOptionalChildren} from 'types/global';
+import {SubmitButton} from '../buttons/SubmitButton';
 
 /**
  * The `ComponentProps` interface defines the shape of the properties object that is expected for this component.
@@ -44,17 +46,7 @@ interface ComponentProps {
  * ```
  */
 const TaskForm = ({onSubmit, testId}: WithOptionalChildren<ComponentProps>) => {
-    /**
-     * This should go in its own custom hook.
-     *
-     * @param e This is the event.
-     */
-    const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (typeof onSubmit === 'function') {
-            onSubmit(e);
-        }
-    };
+    const {handleOnSubmit} = useFormSubmit({onSubmit});
 
     return (
         <FormElement data-cy={testId} onSubmit={handleOnSubmit}>
@@ -67,7 +59,7 @@ const TaskForm = ({onSubmit, testId}: WithOptionalChildren<ComponentProps>) => {
                     />
                 </Col>
                 <Col xs="max-content">
-                    <Button label="Add" />
+                    <SubmitButton label="Add" />
                 </Col>
             </Row>
         </FormElement>

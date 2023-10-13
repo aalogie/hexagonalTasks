@@ -1,45 +1,45 @@
-import {Button} from 'Client/ui/components/Button';
+import {SubmitButton} from 'Client/ui/components/buttons/SubmitButton';
 
 import TestWrapper from 'Tests/support/TestWrapper';
 
-describe('Button', () => {
+describe('SubmitButton', () => {
     it('Renders', () => {
         cy.mount(
             <TestWrapper bgColor="" height="" padding="" width="">
-                <Button label="Add" testId="Button" />
+                <SubmitButton label="Add" testId="SubmitButton" />
             </TestWrapper>
         );
-        cy.getCy('Button').should('exist');
+        cy.getCy('SubmitButton').should('exist');
     });
 
-    it('Renders as button element', () => {
+    it('Renders as SubmitButton element', () => {
         cy.mount(
             <TestWrapper bgColor="" height="" padding="" width="">
-                <Button label="Add" testId="Button" />
+                <SubmitButton label="Add" testId="SubmitButton" />
             </TestWrapper>
         );
-        cy.getCy('Button').should('be.htmlElement', 'button');
+        cy.getCy('SubmitButton').should('be.htmlElement', 'button');
     });
 
     it('Renders the given label', () => {
         cy.mount(
             <TestWrapper bgColor="" height="" padding="" width="">
-                <Button label="Add" testId="Button" />
+                <SubmitButton label="Add" testId="SubmitButton" />
             </TestWrapper>
         );
-        cy.getCy('Button').contains('Add');
+        cy.getCy('SubmitButton').contains('Add');
     });
 
     it('Does not throw if clicked without onClick function', () => {
         cy.mount(
             <TestWrapper bgColor="" height="" padding="" width="">
-                <Button
+                <SubmitButton
                     label="Add"
-                    testId="Button"
+                    testId="SubmitButton"
                 />
             </TestWrapper>
         );
 
-        cy.getCy('Button').click().should('exist');
+        cy.getCy('SubmitButton').click().should('exist');
     });
 });

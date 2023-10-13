@@ -2,9 +2,9 @@
 import {m as motion} from 'framer-motion';
 import styled from 'styled-components';
 
-import {dropAnimation} from 'Client/ui/animations/taskList';
+import {DeleteButton} from '../buttons/DeleteButton';
 
-import {useTaskItem} from './useTaskItem';
+import {dropAnimation} from 'Client/ui/animations/taskList';
 
 import type {ITask} from 'Client/domain/entities/Tasks';
 
@@ -39,22 +39,19 @@ interface ComponentProps {
  * const MyComponent = <TaskItem testId="myTestId">MyComponent</TaskItem>;
  * ```
  */
-const TaskItem = ({task, testId}: ComponentProps) => {
-    const {handleDeleteTask} = useTaskItem(task.id);
-
-    return (
-        <ListItem
-            animate="visible"
-            data-cy={testId}
-            exit="exit"
-            initial="hidden"
-            transition={{duration: 0.1}}
-            variants={dropAnimation}
-        >
-            <ItemText>{task.taskTitle}</ItemText><DeleteButton onClick={handleDeleteTask}>x</DeleteButton>
-        </ListItem>
-    );
-};
+const TaskItem = ({task, testId}: ComponentProps) => (
+    <ListItem
+        animate="visible"
+        data-cy={testId}
+        exit="exit"
+        initial="hidden"
+        transition={{duration: 0.1}}
+        variants={dropAnimation}
+    >
+        <ItemText>{task.taskTitle}</ItemText>
+        <DeleteButton taskId={task.id} />
+    </ListItem>
+);
 
 TaskItem.displayName = 'TaskItem';
 TaskItem.defaultProps = {testId: 'TaskItem'};
@@ -69,13 +66,6 @@ color: ${({theme}) => theme.colors.pageBackground};
     &:hover {
         color: ${({theme}) => theme.colors.accentLight};
   }
-`;
-
-const DeleteButton = styled.span`
-    cursor: pointer;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 2rem;
-    font-weight: 600;
 `;
 
 const ItemText = styled.span`

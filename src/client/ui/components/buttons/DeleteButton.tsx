@@ -1,5 +1,6 @@
-import {lighten} from '@nfq/react-grid';
 import styled from 'styled-components';
+
+import {useTaskItem} from '../TaskItem/useTaskItem';
 
 import type {WithOptionalChildren} from 'types/global';
 
@@ -9,9 +10,9 @@ import type {WithOptionalChildren} from 'types/global';
  */
 interface ComponentProps {
     /**
-     * The label text for the button.
+     * The `taskId` property represents a unique identifier of the item to be deleted.
      */
-    label: string;
+    taskId: string;
     /**
      * The `testId` property represents a unique identifier, usually in the form of a string, assigned to a component for testing purposes.
      * It is a required property and must be provided when an object of type `ComponentProps` is expected.
@@ -21,33 +22,35 @@ interface ComponentProps {
 }
 
 /**
- * The `Button` Component.
+ * The `DeleteButton` Component.
  *
  * @param props        The component props.
- * @param props.label  The label of the button. This is the text that will be displayed on the button.
  * @param props.testId A unique identifier, usually in the form of a string, assigned to the component for testing purposes.
- * @returns A React element representing the `Button` component.
+ * @param props.taskId The id of the item to be deleted.
+ * @returns A React element representing the `DeleteButton` component.
  * @todo Add true documentation!
  *
  * @example
  * ```tsx
- * const MyComponent = <Button testId="myTestId">MyComponent</Button>;
+ * const MyComponent = <DeleteButton testId="myTestId">MyComponent</DeleteButton>;
  * ```
  */
-const Button = ({label, testId}: WithOptionalChildren<ComponentProps>) => (
-    <Wrapper data-cy={testId} type="submit">{label}</Wrapper>
-);
+const DeleteButton = ({taskId, testId}: WithOptionalChildren<ComponentProps>) => {
+    const {handleDeleteTask} = useTaskItem(taskId);
 
-Button.displayName = 'Button';
-Button.defaultProps = {testId: 'Button'};
+    return (
+        <Wrapper data-cy={testId} onClick={handleDeleteTask}>x</Wrapper>
+    );
+};
 
-export {Button};
+DeleteButton.displayName = 'DeleteButton';
+DeleteButton.defaultProps = {testId: 'DeleteButton'};
 
-const Wrapper = styled.button`
-    background-color: ${({theme}) => lighten(theme.colors.brandMain, 60)};
-    border: none;
+export {DeleteButton};
+
+const Wrapper = styled.span`
     cursor: pointer;
-    font-size: large;
-    height: 4rem;
-    min-width: 10rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
 `;
