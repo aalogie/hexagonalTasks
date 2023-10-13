@@ -21,7 +21,6 @@ export const useTaskForm = () => {
      * @param event The form submission event triggered when the user submits the task creation form.
      */
     const handleAddTask = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
         const data = new FormData(event.currentTarget);
 
         if (!data.get('taskname')) return;
