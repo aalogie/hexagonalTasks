@@ -1,6 +1,7 @@
 import type {FormEvent} from 'react';
 
 import {HTTP_METHODS} from '@nfq/typed-next-api';
+import {di} from 'react-magnetic-di';
 
 import {useAddTask} from 'Application/useCases/useAddTask';
 
@@ -13,6 +14,8 @@ import {useAddTask} from 'Application/useCases/useAddTask';
  * This function takes a `FormEvent` as its parameter, which represents the form submission event.
  */
 export const useTaskForm = () => {
+    di(useAddTask);
+
     const {addTask} = useAddTask();
 
     /**
@@ -21,6 +24,7 @@ export const useTaskForm = () => {
      * @param event The form submission event triggered when the user submits the task creation form.
      */
     const handleAddTask = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         const data = new FormData(event.currentTarget);
 
         if (!data.get('taskname')) return;

@@ -49,7 +49,10 @@ class TaskService implements TaskAdapter {
      */
     async addTask(key: string, {arg: {body, method}}: MutationRepoArgs<CreateTaskFormData, HTTP_METHODS.POST>) {
         const data = await api<typeof createTask>('/api/tasks/create', {
-            body,
+            body: {
+                body: body.taskBody,
+                title: body.taskTitle
+            },
             method
         });
 
@@ -75,7 +78,7 @@ class TaskService implements TaskAdapter {
     async deleteTaskById(key: string, {arg: {body, method}}: MutationRepoArgs<{id: string}, HTTP_METHODS.DELETE>) {
         const data = await api<typeof deleteTaskById>(`/api/tasks/${body.id}`, {method});
 
-        return data;
+        return data?.id;
     }
 }
 

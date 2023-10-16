@@ -1,13 +1,7 @@
 import {prisma} from 'Server/utils/prisma';
 
-/**
- * `CreateTaskBody` is an interface that represents the structure of the payload for creating a new task.
- * It includes title and body of the newly created task.
- */
-export interface CreateTaskBody {
-    taskBody?: string;
-    taskTitle: string;
-}
+import type {CreateTaskBody} from 'Server/domain/entities/Task';
+
 
 /**
  * Service class for task-related operations.
@@ -45,8 +39,8 @@ export class TaskService {
     static async createTask(taskData: CreateTaskBody) {
         const task = await prisma.task.create({
             data: {
-                body: taskData.taskBody,
-                title: taskData.taskTitle
+                body: taskData.body,
+                title: taskData.title
             }
         });
 

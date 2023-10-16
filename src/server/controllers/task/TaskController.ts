@@ -2,8 +2,9 @@ import {HTTP_STATUS} from '@nfq/typed-next-api';
 
 import {TaskService} from '../../services/TaskService';
 
-import type {CreateTaskBody} from '../../services/TaskService';
 import type {NextApiRequest, NextApiResponse} from 'next';
+import type {CreateTaskBody} from 'Server/domain/entities/Task';
+
 
 /**
  *
@@ -39,7 +40,7 @@ export class TaskController {
             await TaskService.deleteTaskById(query.id);
 
             return {
-                data: query.id,
+                data: {id: query.id},
                 status: HTTP_STATUS.OK
             };
         } catch (error) {
@@ -91,7 +92,7 @@ export class TaskController {
      * const response = await taskController.createtask(req, res, body);
      * ```
      */
-    static async createTask(req: any, res: any, body: CreateTaskBody) {
+    static async createTask(req: NextApiRequest, res: NextApiResponse, body: CreateTaskBody) {
         try {
             const createdTask = await TaskService.createTask(body);
 

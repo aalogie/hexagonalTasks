@@ -7,6 +7,7 @@ module.exports = withFeatureFlags({
                 ['@babel/plugin-proposal-decorators', {legacy: true}],
                 ['@babel/plugin-proposal-class-properties', {loose: false}],
                 ['@babel/plugin-transform-typescript'],
+                ['react-magnetic-di/babel-plugin'],
                 ['styled-components', {
                     fileName: true,
                     preprocess: false,
@@ -22,6 +23,7 @@ module.exports = withFeatureFlags({
         }
     },
     plugins: [
+        ['react-magnetic-di/babel-plugin'],
         ['@babel/plugin-proposal-decorators', {legacy: true}],
         ['@babel/plugin-proposal-class-properties', {loose: false}],
         ['@babel/plugin-transform-typescript'],

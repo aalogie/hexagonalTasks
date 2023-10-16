@@ -3,12 +3,12 @@ import type {FormEvent} from 'react';
 import {Col, Row, Spacer} from '@nfq/react-grid';
 import styled from 'styled-components';
 
+import {SubmitButton} from '../buttons/SubmitButton';
 import {TextInput} from '../TextInput';
 
 import {useFormSubmit} from './useFormSubmit';
 
 import type {WithOptionalChildren} from 'types/global';
-import {SubmitButton} from '../buttons/SubmitButton';
 
 /**
  * The `ComponentProps` interface defines the shape of the properties object that is expected for this component.
